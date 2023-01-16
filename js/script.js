@@ -151,26 +151,33 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('scroll', showModalWindowByScroll);
 
     class MenuItem {
-        constructor(imageSrc, alt, title, content, price) {
+        constructor(imageSrc, alt, title, content, price, ...classes) {
             this.imageSrc = imageSrc;
             this.alt = alt;
             this.title = title;
             this.content = content;
             this.price = price;
+            this.classes = classes;
         }
 
         render(parentElement) {
             const newElement = document.createElement('div');
+
+            if (this.classes.length === 0) {
+                this.classes = 'menu__item';
+                newElement.classList.add(this.classes);
+            } else {
+                this.classes.forEach(className => newElement.classList.add(className));
+            }
+            
             newElement.innerHTML = `
-                <div class="menu__item">
-                    <img src=${this.imageSrc} alt=${this.alt}>
-                    <h3 class="menu__item-subtitle">${this.title}</h3>
-                    <div class="menu__item-descr">${this.content}</div>
-                    <div class="menu__item-divider"></div>
-                    <div class="menu__item-price">
-                        <div class="menu__item-cost">Цена:</div>
-                        <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
-                    </div>
+                <img src=${this.imageSrc} alt=${this.alt}>
+                <h3 class="menu__item-subtitle">${this.title}</h3>
+                <div class="menu__item-descr">${this.content}</div>
+                <div class="menu__item-divider"></div>
+                <div class="menu__item-price">
+                    <div class="menu__item-cost">Цена:</div>
+                    <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
                 </div>
             `;
             parentElement.append(newElement);
@@ -192,7 +199,8 @@ window.addEventListener('DOMContentLoaded', () => {
         'elite',
         'Меню “Премиум”',
         'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
-        550
+        550,
+        'menu__item'
     ).render(menuContainer);
 
     new MenuItem(
@@ -200,7 +208,8 @@ window.addEventListener('DOMContentLoaded', () => {
         'post',
         'Меню "Постное"',
         'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
-        430
+        430,
+        'menu__item'
     ).render(menuContainer);
     
      
