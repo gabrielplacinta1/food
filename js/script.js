@@ -190,9 +190,9 @@ window.addEventListener('DOMContentLoaded', () => {
         return await res.json();
      };
 
-     getData('http://localhost:3000/menu')
+    axios.get('http://localhost:3000/menu')
         .then(data => {
-            data.forEach(({img, altimg, title, descr, price}) => {
+            data.data.forEach(({img, altimg, title, descr, price}) => {
                 new MenuItem(img, altimg, title, descr, price).render(menuContainer);
             });
         });
