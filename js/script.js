@@ -1,17 +1,17 @@
-window.addEventListener('DOMContentLoaded', function() {
-    const tabs = require('./modules/tabs'),
-          modal = require('./modules/modal'),
-          timer = require('./modules/timer'),
-          cards = require('./modules/cards'),
-          calc = require('./modules/calc'),
-          forms = require('./modules/forms'),
-          slider = require('./modules/slider');
+import tabs from './modules/tabs';
+import modal from './modules/modal';
+import timer from './modules/timer';
+import cards from './modules/cards';
+import calc from './modules/calc';
+import forms from './modules/forms';
+import slider from './modules/slider';
 
+window.addEventListener('DOMContentLoaded', function() {
+    slider();
+    calc();
     tabs();
     modal();
     timer();
     cards();
-    calc();
     forms();
-    slider();
 });
